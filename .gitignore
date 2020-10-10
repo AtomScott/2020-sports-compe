@@ -1,5 +1,5 @@
 # Data
-./data/videos
+data/raw_videos
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
