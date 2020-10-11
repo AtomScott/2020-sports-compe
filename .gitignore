@@ -1,3 +1,6 @@
+# Model Checkpoints
+ckpt/
+
 # Data
 data/raw_videos
 
