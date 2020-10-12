@@ -81,9 +81,16 @@ visualize_result(img_original, pred)
 
 # Mask Human 
 mask_idx = (pred==12) # 12 is human class label
-img_original[mask_idx] = 0
-PIL.Image.fromarray(img_original).save('mask_human.png')
+tmp = img_original.copy()
+tmp[mask_idx] = 0
+PIL.Image.fromarray(tmp).save('mask_human.png')
 
+# Mask Background
+import functools, operator
+mask_idx = functools.reduce(operator.__or__, [(pred==i) for i in [0,1,3,5, 43, 105, 141]]) 
+tmp = img_original.copy()
+tmp[~mask_idx] = 0
+PIL.Image.fromarray(tmp).save('mask_exp.png')
 # Top classes in answer
 # predicted_classes = numpy.bincount(pred.flatten()).argsort()[::-1]
 # for c in predicted_classes[:15]:
